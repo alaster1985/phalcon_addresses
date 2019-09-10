@@ -1,0 +1,71 @@
+<h1>All addresses of <?= $user->getFullName() ?>!</h1>
+<?php if (count($addresses)) : ?>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">City</th>
+            <th scope="col">Postcode</th>
+            <th scope="col">Region</th>
+            <th scope="col">Street</th>
+            <th scope="col">DELETE</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($addresses as $address) : ?>
+            <tr>
+                <th scope="row"><?= $address->id ?></th>
+                <td><?= $address->city ?></td>
+                <td><?= $address->postcode ?></td>
+                <td><?= $address->region ?></td>
+                <td><?= $address->street ?></td>
+                <td><?= $this->tag->linkTo([
+                        'address/delete/' . $address->id,
+                        'delete',
+                        'onclick' => "return confirm('Are you sure you want delete this address?')",
+                    ]); ?></td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+<?php else : ?>
+    <p>There is no one address for this user!</p>
+<?php endif; ?>
+<p><?php $this->flashSession->output() ?></p>
+<p>
+    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+       aria-controls="collapseExample">Add new address</a>
+</p>
+<div class="collapse" id="collapseExample">
+    <?= $this->tag->form('/address/user/add'); ?>
+    <div class="form-group">
+        <label for="firstName">City</label>
+        <?= $form->render('city'); ?>
+    </div>
+
+    <div class="form-group">
+        <label for="lastName">Postcode</label>
+        <?= $form->render('postcode'); ?>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Region</label>
+        <?= $form->render('region'); ?>
+    </div>
+
+    <div class="form-group">
+        <label for="password">Street</label>
+        <?= $form->render('street'); ?>
+    </div>
+
+    <div class="form-group">
+        <label for="type_id">User</label>
+        <?= $form->render('user_id'); ?>
+    </div>
+
+    <div class="form-group">
+        <?= $form->render('Submit'); ?>
+    </div>
+    <input type='hidden' name='<?= $this->security->getTokenKey() ?>' value='<?= $this->security->getToken() ?>'/>
+    <?= $this->tag->endForm(); ?>
+</div>

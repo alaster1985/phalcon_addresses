@@ -1,0 +1,20 @@
+<h2>Login page</h2>
+<p><?php $this->flashSession->output() ?></p>
+<?= $this->tag->form('/user/login/submit'); ?>
+
+<div class="form-group">
+    <label for="email">E-Mail</label>
+    <?= $form->render('email'); ?>
+</div>
+
+<div class="form-group">
+    <label for="password">Password</label>
+    <?= $form->render('password'); ?>
+</div>
+
+<div class="form-group">
+    <?= $form->render('Login'); ?>
+</div>
+<input type='hidden' name='<?= $this->security->getTokenKey() ?>' value='<?= $this->security->getToken() ?>'/>
+
+<?= $this->tag->endForm(); ?>

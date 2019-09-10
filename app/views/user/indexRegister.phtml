@@ -1,0 +1,39 @@
+<h2>Register new user</h2>
+<p><?php $this->flashSession->output() ?></p>
+<?= $this->tag->form('/user/register/submit'); ?>
+
+<div class="form-group">
+    <label for="firstName">First name</label>
+    <?= $form->render('firstName'); ?>
+</div>
+
+<div class="form-group">
+    <label for="lastName">Last name</label>
+    <?= $form->render('lastName'); ?>
+</div>
+
+<div class="form-group">
+    <label for="email">E-Mail</label>
+    <?= $form->render('email'); ?>
+</div>
+
+<div class="form-group">
+    <label for="type_id">User type</label>
+    <?= $form->render('type_id'); ?>
+</div>
+
+<div class="form-group">
+    <label for="password">Password</label>
+    <?= $form->render('password'); ?>
+</div>
+
+<div class="form-group">
+    <label for="confirmPassword">Confirm Password</label>
+    <?= $form->render('confirmPassword'); ?>
+</div>
+
+<div class="form-group">
+    <?= $form->render('Submit'); ?>
+</div>
+
+<?= $this->tag->endForm(); ?>

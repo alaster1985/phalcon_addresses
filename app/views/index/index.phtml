@@ -1,0 +1,17 @@
+<h1>All users!</h1>
+<p><?php $this->flashSession->output() ?></p>
+<?php if (count($users)) : ?>
+    <ul class="list-group">
+        <?php
+        foreach ($users as $user) {
+            echo '<li class="list-group-item">'
+                . $this->tag->linkTo([
+                    'address/user/' . $user->id,
+                    $user->getFullName(),
+                ])
+                . '</li>';
+        } ?>
+    </ul>
+<?php else : ?>
+    <p>There is no one users here!</p>
+<?php endif; ?>

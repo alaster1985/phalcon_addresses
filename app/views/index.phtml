@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--    <meta name="token" title="--><?//= $this->security->getTokenKey() ?><!--" content="--><?//= $this->security->getToken() ?><!--">-->
+    <title>Phalcon PHP Framework</title>
+    <?= $this->tag->stylesheetLink('css/bootstrap.min.css'); ?>
+    <?= $this->tag->stylesheetLink('css/jquery.paginate.min.css'); ?>
+    <link rel="shortcut icon" type="image/x-icon" href="<?= $this->url->get('img/favicon.ico'); ?>"/>
+</head>
+<body>
+<nav class="navbar navbar-light bg-light">
+    <ul class="nav">
+        <li class="nav-item">
+            <?= $this->tag->linkTo([
+                '/',
+                'Main',
+                'class' => 'nav-link'
+            ]); ?>
+        </li>
+        <li class="nav-item">
+            <?= $this->tag->linkTo([
+                '/user/register',
+                'Add new user',
+                'class' => 'nav-link'
+            ]); ?>
+        </li>
+        <li class="nav-item">
+            <?= $this->tag->linkTo([
+                '/address',
+                'All addresses',
+                'class' => 'nav-link'
+            ]); ?>
+        </li>
+    </ul>
+    <div class="form-inline">
+        <?php $this->session->has('AUTH_USER') ? $attr = 'out' : $attr = 'in'; ?>
+        <?= $this->tag->linkTo([
+            '/user/log' . $attr,
+            'log' . $attr,
+            'class' => 'navbar-brand'
+        ]); ?>
+    </div>
+</nav>
+
+<div class="container">
+    <?= $this->getContent(); ?>
+</div>
+
+<?php
+echo $this->tag->javascriptInclude('js/jquery-3.4.1.min.js');
+echo $this->tag->javascriptInclude('js/bootstrap.bundle.min.js');
+echo $this->tag->javascriptInclude('js/jquery.paginate.min.js');
+echo $this->tag->javascriptInclude('js/scripts.js');
+?>
+
+</body>
+</html>
